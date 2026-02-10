@@ -21,9 +21,12 @@
     <p>Jason taught me how to make changes. Thank you, Jason!<br><br>
       <script src="callinggoogle.js">
         authenticate().then(loadClient)
-        execute()
+        //await is coming to get me 
+        const rawResponse = execute()
+        document.getElementById("rR").textContent = JSON.parse(rawResponse);
       </script>
     </p>
+    <div id="rR"></div>
   </body>
 
   <body>
