@@ -1,6 +1,5 @@
-// what the fuck - API KEYS and IDs (check logs for this info so i dont cause security issues)
-const CLIENT_ID = '368987126201-ke47d1ma0an8pp720dbu1l37kc0hh0nm.apps.googleusercontent.com';
-const API_KEY = '<YOUR_API_KEY>';
+//GET next month
+
 
 // Discovery doc URL for APIs used by the quickstart
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
@@ -104,7 +103,3 @@ async function listUpcomingEvents() {
     document.getElementById('content').innerText = output;
 }
 
-//testing functions
-function TurnHeaderBlue() {
-    document.getElementById("Header").style.color = "blue";
-}
