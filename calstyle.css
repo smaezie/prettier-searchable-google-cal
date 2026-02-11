@@ -5,16 +5,16 @@
 :root{
         --nc-font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Poppins','Open Sans',sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
         --nc-font-mono:Consolas,monaco,'Ubuntu Mono','Liberation Mono','Courier New',Courier,monospace;
-        --nc-tx-1:#052e1c;
-        --nc-tx-2:#054b2d;
+        --nc-tx-1:#054b2d;
+        --nc-tx-2:#052e1c;
         --nc-bg-1:#FFFFFF;
         --nc-bg-2:#F6F8FA;
         --nc-bg-3:#E5E7EB;
         --nc-lk-1:#437a45;
         --nc-lk-2:#539655;
         --nc-lk-tx:#FFFFFF;
-        --nc-ac-1:#eda84f;
-        --nc-ac-tx:#442100;
+        --nc-ac-1:#ffe4c3;
+        --nc-ac-tx:#558740;
         }
 
 /**
@@ -26,8 +26,8 @@
 --nc-lk-1 - Primary link color 
 --nc-lk-2 - Secondary link color (for hover)
 --nc-lk-tx - Link text 
---nc-ac-1 - Accent 
---nc-ac-tx - Accent text
+--nc-ac-1 - Accent (for highlighting)
+--nc-ac-tx - Accent text (for highlighting)
 
 @media (prefers-color-scheme:dark) is declaring Dark mode overrides
 
@@ -43,8 +43,8 @@
         --nc-lk-1:#eda84f;
         --nc-lk-2:#539655;
         --nc-lk-tx:#FFFFFF;
-        --nc-ac-1:#442100;
-        --nc-ac-tx:#eda84f;
+        --nc-ac-1:#558740;
+        --nc-ac-tx:#ffe4c3;
     }
 }*{
 margin:0;padding:0
@@ -56,8 +56,10 @@ margin-bottom:1rem
 
     button,html,input,select{
         font-family:var(--nc-font-sans)}
-        body{margin:0 auto;
-            max-width:750px;
+        body{
+            margin:0 auto;
+            width: 90%; 
+            max-width: 1200px;
             padding:2rem;
             border-radius:6px;
             overflow-x:hidden;
