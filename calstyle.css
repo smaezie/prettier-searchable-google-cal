@@ -297,14 +297,15 @@ margin-bottom:1rem
             
             /** table cells */
             td,th{
-                border:1px solid var(--table-bg-2);
+                border:3px solid var(--table-bg-2);
+                background:var(--table-bg-1);
                 text-align:left;
-                padding:.5rem
+                padding:.5rem;
             }
             
             /** table header */
             th{
-                background:var(#96b497)
+                background:var(--table-bg-header)
             }
             
             /** table striping */
