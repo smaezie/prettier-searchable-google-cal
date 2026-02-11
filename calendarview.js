@@ -9,7 +9,7 @@ months = ["January", "February", "March", "April", "May", "June", "July", "Augus
 monthAndYear = document.getElementById("monthAndYear");
 showCalendar(currentMonth, currentYear);
 
-function today() {
+function goToToday() {
     currentMonth = today.getMonth();
     currentYear = today.getFullYear();
     showCalendar(currentMonth, currentYear);
