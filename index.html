@@ -15,14 +15,25 @@
     />
   </head>
   <body>
-    <h1 id="Header" onclick="TurnHeaderBlue()">Zareski Calendar Project</h1>
+    <h1 id="Header">Zareski Calendar Project</h1>
     <p>Jason taught me how to make changes. Thank you, Jason!<br><br>
-      <script src="callinggoogle.js">
+      <!-- OLDDDDD           <script src="callinggoogle.js">
         authenticate().then(loadClient)
         //await is coming to get me 
         const rawResponse = execute()
         document.getElementById("rR").textContent = JSON.parse(rawResponse);
+
+              //grab from GET/Fetch
+              //manipulate Here
+
+      </script> -->
+      <script>
+        // await --- before we can continue, we have to wait for the response from another computer/the server
+        //res = response
+        const res = await fetch("/callinggoogle");
+        document.getElementById("rR").textContent = JSON.stringify(rawResponse);
       </script>
+
     </p>
     <div id="rR"></div>
   </body>

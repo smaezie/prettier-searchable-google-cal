@@ -1,49 +1,25 @@
-/**
- * Sample JavaScript code for calendar.events.list
- * See instructions for running APIs Explorer code samples locally:
- * https://developers.google.com/explorer-help/code-samples#javascript
- */
+import { google } from "googleapis";
 
-function authenticate() {
-    return gapi.auth2.getAuthInstance()
-        .signIn({ scope: "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.app.created https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.events.freebusy https://www.googleapis.com/auth/calendar.events.owned https://www.googleapis.com/auth/calendar.events.owned.readonly https://www.googleapis.com/auth/calendar.events.public.readonly https://www.googleapis.com/auth/calendar.events.readonly https://www.googleapis.com/auth/calendar.readonly" })
-        .then(function () { console.log("Sign-in successful"); },
-            function (err) { console.error("Error signing in", err); });
+
+export default async function handler(request, response) {
+
+    const calendar = google.calendar({
+        version: "v3",
+        auth: process.env.GOOGLE_API_KEY, // API key only works for PUBLIC calendars
+    });
+
+    //when i get my promise bach .THEN(i will do this)
+    const res = await calendar.events.list({
+        calendarId: "c_6c371d91700f944faa41f0885a53ef93e08b9eb4519ea076f2981edddb92f659@group.calendar.google.com",
+        timeMin: new Date().toISOString(),
+        timeMax: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+        orderBy: "startTime",
+    });
+
+    response.status(200).json(res.data.items);
+
+    console.log(res.data.items);
+
+
+
 }
-function loadClient() {
-    //get API key from vercel
-    gapi.client.setApiKey(process.env.GOOGLE_CAL_API_KEY);
-    return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/calendar/v3/rest")
-        .then(function () { console.log("GAPI client loaded for API"); },
-            function (err) { console.error("Error loading GAPI client for API", err); });
-}
-// Make sure the client is loaded and sign-in is complete before calling this method.
-function execute() {
-    return gapi.client.calendar.events.list({
-        "calendarId": "c_6c371d91700f944faa41f0885a53ef93e08b9eb4519ea076f2981edddb92f659@group.calendar.google.com",
-        "maxResults": 1,
-        "showDeleted": false
-    })
-    //json is resturned in the response from google
-    //response is javascript object notation JS O N
-        .then(function (response) {
-            // Handle the results here (response.result has the parsed body).
-            console.log("Response", response);
-            return response.result;
-        },
-            function (err) { console.error("Execute error", err); });
-}
-gapi.load("client:auth2", function () {
-    gapi.auth2.init({ client_id: process.env.GOOGLE_CAL_CLIENT_ID });
-});
-
-//using the google API .js
-{/* buttons html
-    
-<script src="https://apis.google.com/js/api.js"></script>
-<script>
-
-
-</script>
-<button onclick="authenticate().then(loadClient)">authorize and load</button>
-<button onclick="execute()">execute</button> */}
