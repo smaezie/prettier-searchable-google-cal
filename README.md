@@ -15,7 +15,8 @@ This is a starter HTML5 templates which is configured with Vercel Analytics (thr
 
 
 ---
-Sarah's Notes
+
+# Sarah's Notes
 
 //GET
 //POST
@@ -23,6 +24,11 @@ Sarah's Notes
 //automatically GET .json 
 //homepage needs GET request to fetch next month cal via LOADING page
         //dont display until fully loaded!
+
+we have GOT the JSON! Yipee!
+Next we need to do Everything Else! :D
+
+
 //search works within the next month's data
 
 // PRETTIERCAL needs GET the next month
