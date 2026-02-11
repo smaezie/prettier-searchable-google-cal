@@ -5,7 +5,7 @@ export default async function handler(request, response) {
 
     const calendar = google.calendar({
         version: "v3",
-        auth: process.env.GOOGLE_API_KEY, // API key only works for PUBLIC calendars
+        auth: process.env.GOOGLE_CAL_API_KEY, // API key only works for PUBLIC calendars
     });
 
     //when i get my promise bach .THEN(i will do this)
