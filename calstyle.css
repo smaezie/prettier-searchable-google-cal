@@ -296,16 +296,20 @@ margin-bottom:1rem
             }
             
             /** table cells */
-            td,th{
-                border:3px solid var(--table-bg-2);
+            td{
+                border:5px solid var(--table-bg-2);
                 background:var(--table-bg-1);
-                text-align:left;
+                text-align:center;
                 padding:.5rem;
             }
-            
+                       
             /** table header */
             th{
-                background:var(--table-bg-header)
+                background:var(--table-bg-header);
+                border:5px solid var(--table-bg-2);
+                text-align:left;
+                padding:.5rem;
+                min-height:1.5rem; 
             }
             
             /** table striping */
