@@ -21,12 +21,12 @@
         --table-bg-2:#ffffff;
         --table-bg-header:#96b497;
         /** age demographic colors */
-        --table-b-5-age:#fda573;
-        --table-6-11-age:#ffd675;
-        --table-12-16-age:#ffabb7;
-        --table-16up-age:#c597df;
-        --table-18up-age:#a2bce8;
-        --table-intergen:#ffffff;
+        --t-b-5-age:#fda573;
+        --t-6-11-age:#ffd675;
+        --t-12-16-age:#ffabb7;
+        --t-16up-age:#c597df;
+        --t-18up-age:#a2bce8;
+        --t-intergen:#ffffff;
         }
 
 /** 
@@ -299,7 +299,7 @@ margin-bottom:1rem
             td{
                 border:5px solid var(--table-bg-2);
                 background:var(--table-bg-1);
-                text-align:center;
+                text-align:left;
                 padding:.5rem;
             }
                        
@@ -307,7 +307,7 @@ margin-bottom:1rem
             th{
                 background:var(--table-bg-header);
                 border:5px solid var(--table-bg-2);
-                text-align:left;
+                text-align:center;
                 font-family:'Poppins','Open Sans', sans-serif;
                 font-weight:600;
                 padding:.5rem;
