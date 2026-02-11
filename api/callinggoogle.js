@@ -34,10 +34,4 @@ export default async function handler(request, response) {
 
         response.status(200).json(res.data.items);
         console.log(res.data.items);
-    } catch (error) {
-        console.error("Calendar API error:", error);
-        response.status(500).json({ 
-            error: "Failed to fetch calendar events",
-            details: error.message 
-        });
     }

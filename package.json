@@ -1,5 +1,7 @@
 {
+  "name": "prettier-searchable-google-cal",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@vercel/edge": "^0.1.2",
     "googleapis": "^171.4.0"
