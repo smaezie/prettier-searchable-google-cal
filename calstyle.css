@@ -359,7 +359,6 @@ margin-bottom:1rem
         /* Two-column layout for calendar + sidebar */
         .layout{
             display:flex;
-            margin-top:1rem;
             gap:1rem;
             align-items:flex-start;
         }
@@ -368,6 +367,7 @@ margin-bottom:1rem
         }
         .sidecol{
             width:300px;
+            margin-top:1rem;
             flex-shrink:0;
         }
 
