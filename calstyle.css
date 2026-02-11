@@ -15,9 +15,21 @@
         --nc-lk-tx:#FFFFFF;
         --nc-ac-1:#ffe4c3;
         --nc-ac-tx:#558740;
+
+        /** sarah's custom table css colors */
+        --table-bg-1:#ffecd4;
+        --table-bg-2:#ffffff;
+        --table-bg-header:#96b497;
+        /** age demographic colors */
+        --table-b-5-age:#fda573;
+        --table-6-11-age:#ffd675;
+        --table-12-16-age:#ffabb7;
+        --table-16up-age:#c597df;
+        --table-18up-age:#a2bce8;
+        --table-intergen:#ffffff;
         }
 
-/**
+/** 
 --nc-tx-1 - Text 
 --nc-tx-2 - Secondary text
 --nc-bg-1 - Primary background 
@@ -277,27 +289,34 @@ margin-bottom:1rem
             padding:auto .5rem
         }
         
-        table{
-            border-collapse:collapse;width:100%
-        }
-        
-        td,th{
-            border:1px solid var(--nc-bg-3);
-            text-align:left;
-            padding:.5rem
-        }
-        
-        th{
-            background:var(--nc-bg-2)
-        }
-        
-        tr:nth-child(2n){
-            background:var(--nc-bg-2)
-        }
-        
-        table caption{
-            font-weight:700;margin-bottom:.5rem
-        }
+        /** table styling */
+
+            table{
+                border-collapse:collapse;width:100%
+            }
+            
+            /** table cells */
+            td,th{
+                border:1px solid var(--table-bg-2);
+                text-align:left;
+                padding:.5rem
+            }
+            
+            /** table header */
+            th{
+                background:var(#96b497)
+            }
+            
+            /** table striping */
+            tr:nth-child(2n){
+                background:var(--table-bg-1)
+            }
+            
+            table caption{
+                font-weight:700;margin-bottom:.5rem
+            }
+
+        /** end table styling */        
         
         textarea{
             max-width:100%
@@ -339,6 +358,7 @@ margin-bottom:1rem
         /* Two-column layout for calendar + sidebar */
         .layout{
             display:flex;
+            margin-top:1rem;
             gap:1rem;
             align-items:flex-start;
         }
