@@ -117,15 +117,21 @@
       var selectMonth = document.getElementById("month");
       var selectYear = document.getElementById("year");
 
-      //fetch --- go get something from another computer/the server
-      //res is a constant NOT CONSTRUCT, after RESOLVING THE PROMISE using .then, we grab the JSON body and store it in res
-      //? denotes query parameters, which are used to send data to the server. in this case, we are sending the month and year 
-      // selected by the user to the server, so that the server can get the correct events from the Google Calendar API.
-      // document.getElementById IS CLIENT SIDE 
-      const res = await fetch(`/api/callinggoogle?month=${selectMonth.value}&year=${selectYear.value}`).then((response) => response.json());
-      document.getElementById("rR").textContent = JSON.stringify(res);
+      try {
+        //fetch --- go get something from another computer/the server
+        //res is a constant NOT CONSTRUCT, after RESOLVING THE PROMISE using .then, we grab the JSON body and store it in res
+        //? denotes query parameters, which are used to send data to the server. in this case, we are sending the month and year 
+        // selected by the user to the server, so that the server can get the correct events from the Google Calendar API.
+        // document.getElementById IS CLIENT SIDE 
+        const res = await fetch(`/api/callinggoogle?month=${selectMonth.value}&year=${selectYear.value}`).then((response) => response.json());
+        document.getElementById("rR").textContent = JSON.stringify(res);
+      } catch (error) {
+        console.error("Error fetching calendar data:", error);
+        document.getElementById("rR").textContent = "Sorry, Sarah. You messed up! Error loading calendar: " + error.message;
+      }
     }
-    populateGoogleCal()
+    // Wait for DOM to be fully loaded before calling
+    document.addEventListener("DOMContentLoaded", populateGoogleCal);
 
   </script>
 

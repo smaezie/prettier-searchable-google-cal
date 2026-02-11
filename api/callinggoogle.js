@@ -3,13 +3,31 @@ import { google } from "googleapis";
 export default async function handler(request, response) {
     // Get month and year from query parameters, default to current date
     const today = new Date();
-    const monthNumber = parseInt(request.query.month) || today.getMonth();
-    const yearNumber = parseInt(request.query.year) || today.getFullYear();
+
+    const monthsMap = {
+    January: 1,
+    February: 2,
+    March: 3,
+    April: 4,
+    May: 5,
+    June: 6,
+    July: 7,
+    August: 8,
+    September: 9,
+    October: 10,
+    November: 11,
+    December: 12
+    };
+    
+    //grab the numbers from the request query parameters
+    const monthNumber = monthsMap[request.query.month] 
+    //const monthNumber = parseInt(request.query.month) || today.getMonth(); || today.getFullYear();
+    const yearNumber = parseInt(request.query.year) 
 
     // Calculate the last day of the month
     const endOfSelectMonth = 32 - new Date(yearNumber, monthNumber, 32).getDate();
 
-    const month = (monthNumber + 1).toString(); // Note: getMonth() is 0-indexed
+    const month = monthNumber.toString(); 
     const year = yearNumber.toString();
 
     const timeMinValue = year + "-" + month.padStart(2, "0") + "-01T00:00:00Z";
