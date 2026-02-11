@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://apis.google.com/js/api.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Zareski Calendar Project</title>
-    <meta
-      name="description"
-      content="Doing my best."
-    />
-  </head>
-  <body>
-    <h1 id="Header">Zareski Calendar Project</h1>
-    <p>Jason taught me how to make changes. Thank you, Jason!<br><br>
-      <!-- OLDDDDD           <script src="callinggoogle.js">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://apis.google.com/js/api.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css" />
+  <title>Zareski Calendar Project</title>
+  <meta name="description" content="Doing my best." />
+</head>
+
+<body>
+  <h1 id="Header">Zareski Calendar Project</h1>
+  <p>Jason taught me how to make changes. Thank you, Jason!<br><br>
+    <!-- OLDDDDD           <script src="callinggoogle.js">
         authenticate().then(loadClient)
         //await is coming to get me 
         const rawResponse = execute()
@@ -27,18 +23,23 @@
               //manipulate Here
 
       </script> -->
-      <script>
-        // await --- before we can continue, we have to wait for the response from another computer/the server
-        //res = response
+    <script>
+      // await --- before we can continue, we have to wait for the response from another computer/the server
+      //res = response
+      async function populateGoogleCal() {
         const res = await fetch("/callinggoogle");
         document.getElementById("rR").textContent = JSON.stringify(rawResponse);
-      </script>
+      }
+      populateGoogleCal()
+      
+    </script>
 
-    </p>
-    <div id="rR"></div>
-  </body>
+  </p>
+  <div id="rR"></div>
+</body>
 
-  <body>
+<body>
 
-  </body>
+</body>
+
 </html>
