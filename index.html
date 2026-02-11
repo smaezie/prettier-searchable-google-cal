@@ -17,7 +17,9 @@
       // await --- before we can continue, we have to wait for the response from another computer/the server
       //res = response
       async function populateGoogleCal() {
-        const res = await fetch("/api/callinggoogle");
+        //fetch --- go get something from another computer/the server
+        //res is a constant NOT CONSTRUCT, after RESOLVING THE PROMISE using .then, we grab the JSON body and store it in res
+        const res = await fetch("/api/callinggoogle").then((response) => response.json()); 
         document.getElementById("rR").textContent = JSON.stringify(res);
       }
       populateGoogleCal()
