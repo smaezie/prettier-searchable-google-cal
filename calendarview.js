@@ -9,6 +9,11 @@ months = ["January", "February", "March", "April", "May", "June", "July", "Augus
 monthAndYear = document.getElementById("monthAndYear");
 showCalendar(currentMonth, currentYear);
 
+function today() {
+    currentMonth = today.getMonth();
+    currentYear = today.getFullYear();
+    showCalendar(currentMonth, currentYear);
+}
 
 function next() {
     currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
