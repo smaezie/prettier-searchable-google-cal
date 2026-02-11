@@ -38,14 +38,14 @@
 
       <div class="form-inline">
 
-        <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Previous</button>
+        <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous(); populateGoogleCal()">Previous</button>
 
-        <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Next</button>
+        <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next(); populateGoogleCal()">Next</button>
       </div>
       <br />
       <form class="form-inline">
         <label class="lead mr-2 ml-2" for="month">Jump To: </label>
-        <select class="form-control col-sm-4" name="month" id="month" onchange="jump()">
+        <select class="form-control col-sm-4" name="month" id="month" onchange="jump(); populateGoogleCal()">
           <option value=0>Jan</option>
           <option value=1>Feb</option>
           <option value=2>Mar</option>
@@ -61,7 +61,7 @@
         </select>
 
 
-        <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onchange="jump()">
+        <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onchange="jump(); populateGoogleCal()">
           <option value=1990>1990</option>
           <option value=1991>1991</option>
           <option value=1992>1992</option>
