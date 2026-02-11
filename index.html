@@ -13,25 +13,15 @@
 <body>
   <h1 id="Header">Zareski Calendar Project</h1>
   <p>Jason taught me how to make changes. Thank you, Jason!<br><br>
-    <!-- OLDDDDD           <script src="callinggoogle.js">
-        authenticate().then(loadClient)
-        //await is coming to get me 
-        const rawResponse = execute()
-        document.getElementById("rR").textContent = JSON.parse(rawResponse);
-
-              //grab from GET/Fetch
-              //manipulate Here
-
-      </script> -->
     <script>
       // await --- before we can continue, we have to wait for the response from another computer/the server
       //res = response
       async function populateGoogleCal() {
-        const res = await fetch("/callinggoogle");
-        document.getElementById("rR").textContent = JSON.stringify(rawResponse);
+        const res = await fetch("/api/callinggoogle");
+        document.getElementById("rR").textContent = JSON.stringify(res);
       }
       populateGoogleCal()
-      
+
     </script>
 
   </p>
