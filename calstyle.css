@@ -3,7 +3,7 @@
  * edited by: Sarah Zareski
  */
 :root{
-        --nc-font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Poppins','Open Sans',sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+        --nc-font-sans:'Poppins','Open Sans','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell, sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
         --nc-font-mono:Consolas,monaco,'Ubuntu Mono','Liberation Mono','Courier New',Courier,monospace;
         --nc-tx-1:#054b2d;
         --nc-tx-2:#052e1c;
@@ -308,6 +308,8 @@ margin-bottom:1rem
                 background:var(--table-bg-header);
                 border:5px solid var(--table-bg-2);
                 text-align:left;
+                font-family:'Poppins','Open Sans', sans-serif;
+                font-weight:600;
                 padding:.5rem;
                 min-height:1.5rem; 
             }
