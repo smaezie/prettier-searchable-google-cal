@@ -335,4 +335,23 @@ margin-bottom:1rem
         img{
             max-width:100%
         }
+
+        /* Two-column layout for calendar + sidebar */
+        .layout{
+            display:flex;
+            gap:1rem;
+            align-items:flex-start;
+        }
+        .layout .card{
+            flex:1 1 0;
+        }
+        .sidecol{
+            width:300px;
+            flex-shrink:0;
+        }
+
+        @media (max-width:768px){
+            .layout{flex-direction:column}
+            .sidecol{width:100%}
+        }
 /*# sourceMappingURL=/sm/9e8eceaf7c809067604c6fe5de063487968a73cb20a5df2c5e9d91388f9560dc.map */
