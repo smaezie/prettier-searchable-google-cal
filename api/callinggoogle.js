@@ -48,8 +48,8 @@ export default async function handler(request, response) {
         //timeMax: new Date(new Date(parseInt(selectYear.value), parseInt(selectMonth.value) + 1, 0, 23, 59, 59, 999).toISOString()),
         
         //new version, which should get the events for the month and year selected by the client.
-        timeMin: new Date(timeMinValue).toISOString();
-        timeMax: new Date(timeMaxValue).toISOString();
+        timeMin: new Date(timeMinValue).toISOString(),
+        timeMax: new Date(timeMaxValue).toISOString(),
         singleEvents: true,
         orderBy: "startTime",
     });
