@@ -108,7 +108,6 @@
         // document.getElementById IS CLIENT SIDE 
         const res = await fetch(`/api/callinggoogle?month=${selectMonth.value}&year=${selectYear.value}`).then((response) => response.json());
         document.getElementById("rR").textContent = JSON.stringify(res);
-        
         // Now render the events to the calendar
         renderGoogleCalendarEvents(res);
       } catch (error) {
@@ -191,6 +190,16 @@
     document.addEventListener("DOMContentLoaded", function () {
       populateGoogleCal();
     });
+
+    // Backwards-compatible wrapper: some callers expect `AssignCalEvents`
+    // Provide a global function that forwards to the new renderer.
+    function AssignCalEvents(events, options = {}) {
+      try {
+        renderGoogleCalendarEvents(events, options);
+      } catch (e) {
+        console.error('AssignCalEvents error:', e);
+      }
+    }
   </script>
 
   </p>
