@@ -18,62 +18,65 @@
   <div class="container mt-5">
     <div class="layout">
       <div class="card">
-      <h3 class="card-header" id="monthAndYear"></h3>
-      <table class="table table-bordered table-responsive-sm" id="calendar">
-        <thead>
-          <tr>
-            <th>Sunday</th>
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
-            <th>Saturday</th>
-          </tr>
-        </thead>
+        <h3 class="card-header" id="monthAndYear"></h3>
+        <table class="table table-bordered table-responsive-sm" id="calendar">
+          <thead>
+            <tr>
+              <th>Sunday</th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+              <th>Saturday</th>
+            </tr>
+          </thead>
 
-        <tbody id="calendar-body">
+          <tbody id="calendar-body">
 
-        </tbody>
-      </table>
+          </tbody>
+        </table>
 
-      <div class="form-inline">
+        <div class="form-inline">
 
-        <button class="btn btn-outline-primary col-sm-6" id="today" onclick="goToToday(); populateGoogleCal()">Today</button>
+          <button class="btn btn-outline-primary col-sm-6" id="today"
+            onclick="goToToday(); populateGoogleCal()">Today</button>
 
-        <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous(); populateGoogleCal()">Previous</button>
+          <button class="btn btn-outline-primary col-sm-6" id="previous"
+            onclick="previous(); populateGoogleCal()">Previous</button>
 
-        <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next(); populateGoogleCal()">Next</button>
-      </div>
-      <br />
-      <form class="form-inline">
-        <label class="lead mr-2 ml-2" for="month">Jump To: </label>
-        <select class="form-control col-sm-4" name="month" id="month" onchange="jump(); populateGoogleCal()">
-          <option value=0>Jan</option>
-          <option value=1>Feb</option>
-          <option value=2>Mar</option>
-          <option value=3>Apr</option>
-          <option value=4>May</option>
-          <option value=5>Jun</option>
-          <option value=6>Jul</option>
-          <option value=7>Aug</option>
-          <option value=8>Sep</option>
-          <option value=9>Oct</option>
-          <option value=10>Nov</option>
-          <option value=11>Dec</option>
-        </select>
+          <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next(); populateGoogleCal()">Next</button>
+        </div>
+        <br />
+        <form class="form-inline">
+          <label class="lead mr-2 ml-2" for="month">Jump To: </label>
+          <select class="form-control col-sm-4" name="month" id="month" onchange="jump(); populateGoogleCal()">
+            <option value=0>Jan</option>
+            <option value=1>Feb</option>
+            <option value=2>Mar</option>
+            <option value=3>Apr</option>
+            <option value=4>May</option>
+            <option value=5>Jun</option>
+            <option value=6>Jul</option>
+            <option value=7>Aug</option>
+            <option value=8>Sep</option>
+            <option value=9>Oct</option>
+            <option value=10>Nov</option>
+            <option value=11>Dec</option>
+          </select>
 
 
-        <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onchange="jump(); populateGoogleCal()">
-          <option value=2024>2024</option>
-          <option value=2025>2025</option>
-          <option value=2026>2026</option>
-          <option value=2027>2027</option>
-          <option value=2028>2028</option>
-          <option value=2029>2029</option>
-          <option value=2030>2030</option>
-        </select>
-      </form>
+          <label for="year"></label><select class="form-control col-sm-4" name="year" id="year"
+            onchange="jump(); populateGoogleCal()">
+            <option value=2024>2024</option>
+            <option value=2025>2025</option>
+            <option value=2026>2026</option>
+            <option value=2027>2027</option>
+            <option value=2028>2028</option>
+            <option value=2029>2029</option>
+            <option value=2030>2030</option>
+          </select>
+        </form>
       </div>
 
       <aside class="sidecol">
@@ -109,19 +112,29 @@
         console.error("Error fetching calendar data:", error);
         document.getElementById("rR").textContent = "Sorry, Sarah. You messed up! Error loading calendar: " + error.message;
       }
-    }
-    // Wait for DOM to be fully loaded before calling
-    document.addEventListener("DOMContentLoaded", populateGoogleCal);
 
+      async function AssignCalEvents() {
+        // Logic to assign calendar events to the calendar view goes here
+        // This function would parse the 'res' object and update the calendar UI accordingly
+
+        const thisMonthsEvents = await fetch(`/api/callinggoogle?month=${selectMonth.value}&year=${selectYear.value}`).then((response) => response.json());
+        
+
+        console.log(thisMonthsEvents);
+
+      }
+
+      // Wait for DOM to be fully loaded before calling
+      document.addEventListener("DOMContentLoaded", function() {
+        populateGoogleCal();
+        AssignCalEvents();
+      });
+    }
   </script>
 
   </p>
   <div id="rR"></div>
   <script src="calendarview.js"></script>
-</body>
-
-<body>
-
 </body>
 
 </html>
