@@ -190,16 +190,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       populateGoogleCal();
     });
-
-    // Backwards-compatible wrapper: some callers expect `AssignCalEvents`
-    // Provide a global function that forwards to the new renderer.
-    function AssignCalEvents(events, options = {}) {
-      try {
-        renderGoogleCalendarEvents(events, options);
-      } catch (e) {
-        console.error('AssignCalEvents error:', e);
-      }
-    }
+    
   </script>
 
   </p>
