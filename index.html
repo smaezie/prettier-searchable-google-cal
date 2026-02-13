@@ -108,95 +108,89 @@
         // document.getElementById IS CLIENT SIDE 
         const res = await fetch(`/api/callinggoogle?month=${selectMonth.value}&year=${selectYear.value}`).then((response) => response.json());
         document.getElementById("rR").textContent = JSON.stringify(res);
+        
+        // Now render the events to the calendar
+        renderGoogleCalendarEvents(res);
       } catch (error) {
         console.error("Error fetching calendar data:", error);
         document.getElementById("rR").textContent = "Sorry, Sarah. You messed up! Error loading calendar: " + error.message;
       }
+    }
 
-      async function AssignCalEvents() {
-        // Logic to assign calendar events to the calendar view goes here
-        // This function would parse the 'res' object and update the calendar UI accordingly
+    function renderGoogleCalendarEvents(thisMonthsEvents, { keepDescriptionHtml = true } = {}) {
+      if (!Array.isArray(thisMonthsEvents)) return;
 
-        const thisMonthsEvents = await fetch(`/api/callinggoogle?month=${selectMonth.value}&year=${selectYear.value}`).then((response) => response.json());
+      thisMonthsEvents.forEach((event) => {
+        const startIso = event?.start?.dateTime; // e.g. "2026-03-02T10:30:00-05:00"
+        const endIso = event?.end?.dateTime;
+        if (!startIso || !endIso) return;
 
-        function renderGoogleCalendarEvents(thisMonthsEvents, { keepDescriptionHtml = true } = {}) {
-          if (!Array.isArray(thisMonthsEvents)) return;
+        const start = new Date(startIso);
+        const end = new Date(endIso);
 
-          thisMonthsEvents.forEach((event) => {
-            const startIso = event?.start?.dateTime; // e.g. "2026-03-02T10:30:00-05:00"
-            const endIso = event?.end?.dateTime;
-            if (!startIso || !endIso) return;
+        // Build YYYY-MM-DD from the *start* date to match your element id format
+        const yyyy = start.getFullYear();
+        const mm = String(start.getMonth() + 1).padStart(2, "0");
+        const dd = String(start.getDate()).padStart(2, "0");
+        const dateKey = `${yyyy}-${mm}-${dd}`;
 
-            const start = new Date(startIso);
-            const end = new Date(endIso);
+        const container = document.getElementById(`date-${dateKey}`);
+        if (!container) return;
 
-            // Build YYYY-MM-DD from the *start* date to match your element id format
-            const yyyy = start.getFullYear();
-            const mm = String(start.getMonth() + 1).padStart(2, "0");
-            const dd = String(start.getDate()).padStart(2, "0");
-            const dateKey = `${yyyy}-${mm}-${dd}`;
+        const title = event.summary ?? "(No title)";
+        const tz = event?.start?.timeZone; // "America/New_York" in your sample
+        const descriptionRaw = event.description ?? "";
 
-            const container = document.getElementById(`date-${dateKey}`);
-            if (!container) return;
-
-            const title = event.summary ?? "(No title)";
-            const tz = event?.start?.timeZone; // "America/New_York" in your sample
-            const descriptionRaw = event.description ?? "";
-
-            // Description: keep HTML (clickable links) OR strip HTML safely
-            let descriptionForDisplay = descriptionRaw;
-            if (!keepDescriptionHtml) {
-              const tmp = document.createElement("div");
-              tmp.innerHTML = descriptionRaw;
-              descriptionForDisplay = tmp.textContent || tmp.innerText || "";
-            }
-
-            // Format times
-            const timeOptions = {
-              hour: "numeric",
-              minute: "2-digit",
-              ...(tz ? { timeZone: tz } : {}) // if tz is present, format in that timezone
-            };
-
-            const formattedStart = start.toLocaleTimeString([], timeOptions);
-            const formattedEnd = end.toLocaleTimeString([], timeOptions);
-
-            // Create an event block
-            const eventEl = document.createElement("div");
-            eventEl.className = "calendar-event";
-
-            // Use textContent for title to avoid injection; description can be HTML optionally
-            const titleEl = document.createElement("h4");
-            titleEl.textContent = title;
-
-            const timeEl = document.createElement("p");
-            timeEl.innerHTML = `<strong>${formattedStart} – ${formattedEnd}</strong>`;
-
-            const descEl = document.createElement("p");
-            if (keepDescriptionHtml) {
-              descEl.innerHTML = descriptionForDisplay; // links stay clickable
-            } else {
-              descEl.textContent = descriptionForDisplay;
-            }
-
-            eventEl.appendChild(titleEl);
-            if (descriptionForDisplay) eventEl.appendChild(descEl);
-            eventEl.appendChild(timeEl);
-
-            container.appendChild(eventEl);
-          });
-
-          console.log(thisMonthsEvents);
-
+        // Description: keep HTML (clickable links) OR strip HTML safely
+        let descriptionForDisplay = descriptionRaw;
+        if (!keepDescriptionHtml) {
+          const tmp = document.createElement("div");
+          tmp.innerHTML = descriptionRaw;
+          descriptionForDisplay = tmp.textContent || tmp.innerText || "";
         }
-      }
 
-        // Wait for DOM to be fully loaded before calling
-        document.addEventListener("DOMContentLoaded", function () {
-          populateGoogleCal();
-          AssignCalEvents();
-        });
-      }
+        // Format times
+        const timeOptions = {
+          hour: "numeric",
+          minute: "2-digit",
+          ...(tz ? { timeZone: tz } : {}) // if tz is present, format in that timezone
+        };
+
+        const formattedStart = start.toLocaleTimeString([], timeOptions);
+        const formattedEnd = end.toLocaleTimeString([], timeOptions);
+
+        // Create an event block
+        const eventEl = document.createElement("div");
+        eventEl.className = "calendar-event";
+
+        // Use textContent for title to avoid injection; description can be HTML optionally
+        const titleEl = document.createElement("h4");
+        titleEl.textContent = title;
+
+        const timeEl = document.createElement("p");
+        timeEl.innerHTML = `<strong>${formattedStart} – ${formattedEnd}</strong>`;
+
+        const descEl = document.createElement("p");
+        if (keepDescriptionHtml) {
+          descEl.innerHTML = descriptionForDisplay; // links stay clickable
+        } else {
+          descEl.textContent = descriptionForDisplay;
+        }
+
+        eventEl.appendChild(titleEl);
+        if (descriptionForDisplay) eventEl.appendChild(descEl);
+        eventEl.appendChild(timeEl);
+
+        container.appendChild(eventEl);
+      });
+
+      console.log(thisMonthsEvents);
+    }
+
+    // Wait for DOM to be fully loaded before calling
+    document.addEventListener("DOMContentLoaded", function () {
+      populateGoogleCal();
+    });
   </script>
 
   </p>
