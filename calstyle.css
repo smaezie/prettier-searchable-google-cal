@@ -323,7 +323,49 @@ margin-bottom:1rem
                 font-weight:700;margin-bottom:.5rem
             }
 
-        /** end table styling */        
+        /** end table styling */
+
+        /** Event item styling -------------------------------------------------------------------------------*/
+        .event-item {
+            background-color: #e8f4f8;
+            border-left: 4px solid #437a45;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 2px;
+            font-size: 0.85rem;
+        }
+
+        .event-summary {
+            font-weight: 600;
+            color: #054b2d;
+            margin-bottom: 0.3rem;
+            word-wrap: break-word;
+        }
+
+        .event-time {
+            font-weight: 500;
+            color: #437a45;
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .event-description {
+            color: #052e1c;
+            font-size: 0.75rem;
+            line-height: 1.3;
+            word-wrap: break-word;
+        }
+
+        .event-description a {
+            color: #437a45;
+            text-decoration: underline;
+        }
+
+        .event-description a:hover {
+            color: #539655;
+        }
+
+        /** end event styling */
         
         textarea{
             max-width:100%

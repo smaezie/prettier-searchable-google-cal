@@ -43,14 +43,14 @@
             onclick="goToToday(); populateGoogleCal()">Today</button>
 
           <button class="btn btn-outline-primary col-sm-6" id="previous"
-            onclick="previous(); populateGoogleCal()">Previous</button>
+            onclick="previous(); populateGoogleCal(); AssignCalEvents()">Previous</button>
 
-          <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next(); populateGoogleCal()">Next</button>
+          <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next(); populateGoogleCal(); AssignCalEvents()">Next</button>
         </div>
         <br />
         <form class="form-inline">
           <label class="lead mr-2 ml-2" for="month">Jump To: </label>
-          <select class="form-control col-sm-4" name="month" id="month" onchange="jump(); populateGoogleCal()">
+          <select class="form-control col-sm-4" name="month" id="month" onchange="jump(); populateGoogleCal(); AssignCalEvents()">
             <option value=0>Jan</option>
             <option value=1>Feb</option>
             <option value=2>Mar</option>
@@ -119,9 +119,50 @@
 
         const thisMonthsEvents = await fetch(`/api/callinggoogle?month=${selectMonth.value}&year=${selectYear.value}`).then((response) => response.json());
         
-
         console.log(thisMonthsEvents);
 
+        // Clear previous events from calendar cells
+        document.querySelectorAll('.event-item').forEach(el => el.remove());
+
+        // Handle both array and object responses
+        const events = Array.isArray(thisMonthsEvents) ? thisMonthsEvents : (thisMonthsEvents?.items || []);
+
+        // Loop through each event
+        events.forEach(event => {
+          // Extract date from start dateTime (e.g., 2026-03-02T10:30:00-05:00)
+          const startDateTime = new Date(event.start.dateTime);
+          const year = startDateTime.getFullYear();
+          const month = String(startDateTime.getMonth() + 1).padStart(2, '0');
+          const day = String(startDateTime.getDate()).padStart(2, '0');
+          const dateId = `date-${year}-${month}-${day}`;
+
+          // Extract and format times
+          const startTime = startDateTime.toLocaleTimeString('en-US', { 
+            hour: '2-digit', 
+            minute: '2-digit',
+            hour12: true 
+          });
+          const endDateTime = new Date(event.end.dateTime);
+          const endTime = endDateTime.toLocaleTimeString('en-US', { 
+            hour: '2-digit', 
+            minute: '2-digit',
+            hour12: true 
+          });
+
+          // Find the matching calendar cell
+          const cell = document.getElementById(dateId);
+          if (cell) {
+            // Create event container
+            const eventEl = document.createElement('div');
+            eventEl.className = 'event-item';
+            eventEl.innerHTML = `
+              <div class="event-summary"><strong>${event.summary}</strong></div>
+              <div class="event-time">${startTime} - ${endTime}</div>
+              <div class="event-description">${event.description}</div>
+            `;
+            cell.appendChild(eventEl);
+          }
+        });
       }
 
       // Wait for DOM to be fully loaded before calling
