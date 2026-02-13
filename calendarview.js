@@ -68,6 +68,13 @@ function showCalendar(month, year) {
             else {
                 cell = document.createElement("td");
                 cellText = document.createTextNode(date);
+
+                // Adding unique ID to each date (format: date-YYYY-MM-DD) smz
+                // ID in the format date-YYYY-MM-DD EX: date-2026-02-13 for February 13, 2026
+                const dateString = String(month + 1).padStart(2, '0');
+                const dayString = String(date).padStart(2, '0');
+                cell.id = `date-${year}-${dateString}-${dayString}`;
+                
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                     cell.classList.add("bg-info");
                 } // color today's date
