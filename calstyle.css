@@ -45,7 +45,7 @@
 
  */
 
-@media (prefers-color-scheme:dark){
+/**@media (prefers-color-scheme:dark){
     :root{
         --nc-tx-1:#ffffff;
         --nc-tx-2:#eeeeee;
@@ -58,7 +58,9 @@
         --nc-ac-1:#558740;
         --nc-ac-tx:#ffe4c3;
     }
-}*{
+}
+    */
+    *{
 margin:0;padding:0
 }
 
