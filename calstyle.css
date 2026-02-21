@@ -356,14 +356,15 @@ margin-bottom:1rem
 
         .event-description {
             color: #052e1c;
-            font-size: 0.7rem;
+            font-size: 0;
             line-height: 1.1;
             word-wrap: break-word;
-            visibility: hidden;
+            display: none;
         }
 
-        .event-description:hover {
-            visibility: visible;
+        .event-item:hover + .event-description {
+            display: block;
+            font-size: 0.7rem;
         }
 
         /** end event styling */
