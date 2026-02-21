@@ -371,6 +371,7 @@ margin-bottom:1rem
             line-height: 1.1;
             word-wrap: break-word;
             display: none;
+            transition: width 2s, height 2s, font-size 2s;
         }
 
         .event-item:hover .event-description {
