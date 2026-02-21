@@ -444,9 +444,9 @@ margin-bottom:1rem
             background-image: url('/css/searchIcon.png'); /* Add a search icon to input */
             background-position: 10px 12px; /* Position the search icon */
             background-repeat: no-repeat; /* Do not repeat the icon image */
-            background-color: white;
             width: 100%;
             border-radius: 25px;
+            border-color: var(--nc-bg-1);
         }
 
 /*# sourceMappingURL=/sm/9e8eceaf7c809067604c6fe5de063487968a73cb20a5df2c5e9d91388f9560dc.map */
