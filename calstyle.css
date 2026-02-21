@@ -367,16 +367,18 @@ margin-bottom:1rem
 
         .event-description {
             color: #052e1c;
-            font-size: 0;
             line-height: 1.1;
             word-wrap: break-word;
-            display: none;
-            transition: width 2s, height 2s, font-size 2s;
+
+            max-height: 0; /* Start collapsed */
+            overflow: hidden; /* Hide content when collapsed */
+            font-size: 0; /* Start tiny */
+            transition: max-height 2s ease, font-size 2s ease; /* Smooth expand and text grow */
         }
 
         .event-item:hover .event-description {
-            display: block;
-            font-size: 0.7rem;
+            max-height: 500px; /* Expand to a large height (adjust as needed for content) */
+            font-size: 0.7rem; /* Grow text */
         }
 
         /** end event styling */
