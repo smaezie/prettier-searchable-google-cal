@@ -314,7 +314,8 @@ margin-bottom:1rem
                 font-family:'Poppins','Open Sans', sans-serif;
                 font-weight:600;
                 padding:.5rem;
-                min-height:1.5rem; 
+                min-height:1.5rem;
+                min-width: 1.5rem; 
             }
             
             /** table striping */
