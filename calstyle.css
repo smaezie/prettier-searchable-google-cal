@@ -312,10 +312,10 @@ margin-bottom:1rem
                 border:5px solid var(--table-bg-2);
                 text-align:center;
                 font-family:'Poppins','Open Sans', sans-serif;
-                font-weight:600;
+                font-weight:500;
                 padding:.5rem;
                 min-height:1.5rem;
-                min-width: 3rem; 
+                min-width: 6rem; 
             }
             
             /** table striping */
