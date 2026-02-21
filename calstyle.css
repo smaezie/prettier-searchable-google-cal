@@ -301,7 +301,7 @@ margin-bottom:1rem
             td{
                 border:5px solid var(--table-bg-2);
                 background:var(--table-bg-1);
-                vertical-align: bottom;
+                vertical-align: top;
                 text-align:left;
                 padding:.5rem;
             }
@@ -315,7 +315,7 @@ margin-bottom:1rem
                 font-weight:600;
                 padding:.5rem;
                 min-height:1.5rem;
-                min-width: 1.5rem; 
+                min-width: 3rem; 
             }
             
             /** table striping */
