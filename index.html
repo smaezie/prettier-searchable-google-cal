@@ -13,8 +13,6 @@
 
 <body>
   <h1 id="Header">Derby Neck Library Calendar Project</h1>
-  <p>Jason taught me how to make changes. Thank you, Jason!<br><br>
-
   <div class="container mt-5">
     <div class="layout">
       <div class="card">
@@ -107,7 +105,7 @@
         // selected by the user to the server, so that the server can get the correct events from the Google Calendar API.
         // document.getElementById IS CLIENT SIDE 
         const res = await fetch(`/api/callinggoogle?month=${selectMonth.value}&year=${selectYear.value}`).then((response) => response.json());
-        document.getElementById("rR").textContent = JSON.stringify(res);
+        //document.getElementById("rR").textContent = JSON.stringify(res);
 
         // Call AssignCalEvents after fetching data
         AssignCalEvents(res);
