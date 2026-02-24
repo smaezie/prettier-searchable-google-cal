@@ -21,18 +21,18 @@
         --table-bg-2:#ffffff;
         --table-bg-header:#96b497;
         /** age demographic colors */
-        --t-b-5-age:#fda573;
-        --t-6-11-age:#ffd675;
-        --t-12-16-age:#ffabb7;
-        --t-16up-age:#c597df;
-        --t-18up-age:#a2bce8;
+        --t-b-5-age:#fff6f0;
+        --accentb-5-age:#fda573;
+        --t-6-11-age:#fffcf3;
+        --accent6-11-age:#ffd675;
+        --t-12-16-age:#ffefef;
+        --accent12-16-age:#e57979;
+        --t-16up-age:#faf1ff;
+        --accent16up-age:#c597df;
+        --t-18up-age:#fafcff;
+        --accent18up-age:#a2bce8;
         --t-intergen:#ffffff;
-        --border-b-5-age:#ff863f;
-        --border-6-11-age:#ffc744;
-        --border-12-16-age:#ff6464;
-        --border-16up-age:#af5cdf;
-        --border-18up-age:#739ce3;
-        --border-intergen:#b8cfd3;
+        --accentintergen:#437a45;
         }
 
 /** 
@@ -346,11 +346,12 @@ margin-bottom:1rem
         }
 
         /* modifiers for categories/age groups */
-        .event-item.teen { background-color: var(--t-16up-age); border-left-color: var(--border-16up-age); }
-        .event-item.kids { background-color: var(--t-6-11-age); border-left-color: var(--border-6-11-age); }
-        .event-item.tweens { background-color: var(--t-12-16-age); border-left-color: var(--border-12-16-age); }
-        .event-item.adult { background-color: var(--t-18up-age); border-left-color: var(--border-18up-age); }
-        .event-item.intergen { background-color: var(--t-intergen); border-left-color: var(--border-intergen); }
+        .event-item.babies { background-color: var(--t-b-5-age); border-left-color: var(--accentb-5-age); }
+        .event-item.teen { background-color: var(--t-16up-age); border-left-color: var(--accent16up-age); }
+        .event-item.kids { background-color: var(--t-6-11-age); border-left-color: var(--accent6-11-age); }
+        .event-item.tweens { background-color: var(--t-12-16-age); border-left-color: var(--accent12-16-age); }
+        .event-item.adult { background-color: var(--t-18up-age); border-left-color: var(--accent18up-age); }
+        .event-item.intergen { background-color: var(--t-intergen); border-left-color: var(--accentintergen); }
         /* add other category classes as needed */
 
 
