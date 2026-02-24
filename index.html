@@ -73,6 +73,11 @@
             <option value=2028>2028</option>
             <option value=2029>2029</option>
             <option value=2030>2030</option>
+            <option value=2031>2031</option>
+            <option value=2032>2032</option>
+            <option value=2033>2033</option>
+            <option value=2034>2034</option>
+            <option value=2035>2035</option>
           </select>
         </form>
       </div>
@@ -81,9 +86,14 @@
         <div class="card">
           <h4 class="card-header">Looking for something specific?</h4>
           <div class="p-3">
-            <input type="text" id="myInput" onkeyup="searchCal()" placeholder="Search for names..">
-            <p>Filter and Searchbar will go <strong>here.</strong></p>
-            <p><small>Notes, search, or upcoming events.</small></p>
+            <input type="text" id="myInput" onkeyup="searchCal()" placeholder="Search for events...">
+            <p><strong>Event Demographics</strong></p>
+            <label class="switch" id="babies-toggle"><input type="checkbox"><span class="slider round"></span></label>
+            <label class="switch" id="kids-toggle"><input type="checkbox"><span class="slider round"></span></label>
+            <label class="switch" id="tweens-toggle"><input type="checkbox"><span class="slider round"></span></label>
+            <label class="switch" id="teens-toggle"><input type="checkbox"><span class="slider round"></span></label>
+            <label class="switch" id="intergen-toggle"><input type="checkbox"><span class="slider round"></span></label>
+            <p><small></small></p>
           </div>
         </div>
       </aside>
@@ -112,7 +122,7 @@
         AssignCalEvents(res);
       } catch (error) {
         console.error("Error fetching calendar data:", error);
-        document.getElementById("rR").textContent = "Sorry, Sarah. You messed up! Error loading calendar: " + error.message;
+        document.getElementById("rR").textContent = "Error loading calendar: " + error.message;
       }
     }
 
