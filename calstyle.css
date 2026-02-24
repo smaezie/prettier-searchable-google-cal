@@ -579,11 +579,11 @@ margin-bottom:1rem
         #intergen-toggle .slider { background-color: var(--accentintergen); }
         
         /* when toggled on, darken the slider slightly so the knob remains visible */
-        #babies-toggle input:checked + .slider { background-color: darken(var(--accentb-5-age), 10%); }
-        #kids-toggle input:checked + .slider { background-color: darken(var(--accent6-11-age), 10%); }
-        #tweens-toggle input:checked + .slider { background-color: darken(var(--accent12-16-age), 10%); }
-        #teens-toggle input:checked + .slider { background-color: darken(var(--accent16up-age), 10%); }
-        #adults-toggle input:checked + .slider { background-color: darken(var(--accent18up-age), 10%); }
-        #intergen-toggle input:checked + .slider { background-color: darken(var(--accentintergen), 10%); }
+        #babies-toggle input:checked + .slider { background-color: darken(var(--accentb-5-age), 50%); }
+        #kids-toggle input:checked + .slider { background-color: darken(var(--accent6-11-age), 50%); }
+        #tweens-toggle input:checked + .slider { background-color: darken(var(--accent12-16-age), 50%); }
+        #teens-toggle input:checked + .slider { background-color: darken(var(--accent16up-age), 50%); }
+        #adults-toggle input:checked + .slider { background-color: darken(var(--accent18up-age), 50%); }
+        #intergen-toggle input:checked + .slider { background-color: darken(var(--accentintergen), 50%); }
 
 /*# sourceMappingURL=/sm/9e8eceaf7c809067604c6fe5de063487968a73cb20a5df2c5e9d91388f9560dc.map */
