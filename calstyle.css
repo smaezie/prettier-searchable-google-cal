@@ -344,6 +344,7 @@ margin-bottom:1rem
         .event-item.kids { border-left-color: var(--t-6-11-age); }
         .event-item.tweens { border-left-color: var(--t-12-16-age); }
         .event-item.adult { border-left-color: var(--t-18up-age); }
+        .event-item.intergen { border-left-color: var(--t-intergen); }
         /* add other category classes as needed */
 
 
