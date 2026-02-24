@@ -473,9 +473,9 @@ margin-bottom:1rem
         {
             position: relative;
             display: inline-block;
-            /* scaled down to 25% of original 60×34 */
-            width: 15px;
-            height: 8.5px;
+            /* half size of original */
+            width: 30px;
+            height: 17px;
         }
 
         .switch input { 
@@ -501,11 +501,11 @@ margin-bottom:1rem
         {
             position: absolute;
             content: "";
-            /* knob scaled to 25% of 26px */
-            height: 6.5px;
-            width: 6.5px;
-            left: 1px;
-            bottom: 1px;
+            /* knob at 50% size */
+            height: 13px;
+            width: 13px;
+            left: 2px;
+            bottom: 2px;
             background-color: white;
             -webkit-transition: .4s;
             transition: .4s;
@@ -523,18 +523,16 @@ margin-bottom:1rem
 
         input:checked + .slider:before 
         {
-            /* move knob by the new computed distance (15 - 6.5 - 2) */
-            -webkit-transform: translateX(6.5px);
-            -ms-transform: translateX(6.5px);
-            transform: translateX(6.5px);
+            /* move knob half the original distance */
+            -webkit-transform: translateX(13px);
+            -ms-transform: translateX(13px);
+            transform: translateX(13px);
         }
 
             /* Rounded sliders */
         .slider.round 
         {
-            /* half of height (8.5px) would be 4.25, but keep a bit larger
-               so it stays pill-shaped */
-            border-radius: 8.5px;
+            border-radius: 17px; /* half of 34px */
         }
 
         .slider.round:before 
@@ -544,32 +542,48 @@ margin-bottom:1rem
 
         #babies-toggle 
         {
-            margin-right: 0.5rem;
+            margin-right: 0.25rem; /* half spacing */
         }
 
         #kids-toggle 
         {
-            margin-right: 0.5rem;
+            margin-right: 0.25rem;
         }
 
         #tweens-toggle 
         {
-            margin-right: 0.5rem;
+            margin-right: 0.25rem;
         }
 
         #teens-toggle 
         {
-            margin-right: 0.5rem;
+            margin-right: 0.25rem;
         }
 
         #adults-toggle 
         {
-            margin-right: 0.5rem;
+            margin-right: 0.25rem;
         }
 
         #intergen-toggle 
         {
-            margin-right: 0.5rem;
+            margin-right: 0.25rem;
         }
+
+        /* demographic-specific slider colors */
+        #babies-toggle .slider { background-color: var(--accentb-5-age); }
+        #kids-toggle .slider { background-color: var(--accent6-11-age); }
+        #tweens-toggle .slider { background-color: var(--accent12-16-age); }
+        #teens-toggle .slider { background-color: var(--accent16up-age); }
+        #adults-toggle .slider { background-color: var(--accent18up-age); }
+        #intergen-toggle .slider { background-color: var(--accentintergen); }
+        
+        /* when toggled on, darken the slider slightly so the knob remains visible */
+        #babies-toggle input:checked + .slider { background-color: darken(var(--accentb-5-age), 10%); }
+        #kids-toggle input:checked + .slider { background-color: darken(var(--accent6-11-age), 10%); }
+        #tweens-toggle input:checked + .slider { background-color: darken(var(--accent12-16-age), 10%); }
+        #teens-toggle input:checked + .slider { background-color: darken(var(--accent16up-age), 10%); }
+        #adults-toggle input:checked + .slider { background-color: darken(var(--accent18up-age), 10%); }
+        #intergen-toggle input:checked + .slider { background-color: darken(var(--accentintergen), 10%); }
 
 /*# sourceMappingURL=/sm/9e8eceaf7c809067604c6fe5de063487968a73cb20a5df2c5e9d91388f9560dc.map */
