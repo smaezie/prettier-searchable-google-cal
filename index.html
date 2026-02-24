@@ -128,13 +128,19 @@
       function getCategoryClass(summary) {
         if (!summary) return '';
         const s = summary.toLowerCase();
-        if (s.includes('yap and snack') || s.includes('open crafting for teens') || s.includes('puzzles, chess, and magic')) {
+        if (s.includes('yap and snack') || s.includes('open crafting for teens') || s.includes('for teens')) {
           return 'teen'; // event is for teens
+        }
+        if (s.includes('let\'s play tuesdays') || s.includes('puzzles, chess, and magic') || s.includes('for tweens') || s.includes('laser tag')) {
+          return 'tweens'; // event is for tweens
         }
         // add additional rules here as needed
         // e.g. if (s.includes('kids craft')) return 'kids';
-        if (s.includes('storytime') || s.includes('drums & strings') || s.includes('storycraft') || s.includes('tales and tunes') || s.includes('cantos y cuentos') || s.includes('birth to three play') || s.includes('stem saturday') || s.includes('baby stories and senses') || s.includes('makerspace') || s.includes('family fun night')) {
+        if (s.includes('storytime') || s.includes('drums & strings') || s.includes('storycraft') || s.includes('tales and tunes') || s.includes('kids') || s.includes('cantos y cuentos') || s.includes('birth to three play') || s.includes('stem saturday') || s.includes('baby stories and senses') || s.includes('makerspace') || s.includes('family fun night')) {
           return 'kids'; // event is for kids
+        }
+        if (s.includes('snowflake festival') || s.includes('kickoff') || s.includes('endgames') || s.includes('intergenerational')|| s.includes('all ages')) {
+          return 'intergen'; // event is for all ages
         }
         return '';
       }
