@@ -459,8 +459,10 @@ margin-bottom:1rem
         #myInput
         {
             background-image: url(css/searchIcon.png); /* Add a search icon to input */
+            background-size: 20px 20px; /* Set the size of the search icon */
             background-position: 10px 12px; /* Position the search icon */
             background-repeat: no-repeat; /* Do not repeat the icon image */
+            padding-left: 35px; /* Add padding to the left to make space for the search icon */
             width: 100%;
             margin-top: 0.3rem;
             border-radius: 25px;
@@ -471,8 +473,9 @@ margin-bottom:1rem
         {
             position: relative;
             display: inline-block;
-            width: 60px;
-            height: 34px;
+            /* scaled down to 25% of original 60×34 */
+            width: 15px;
+            height: 8.5px;
         }
 
         .switch input { 
@@ -489,7 +492,7 @@ margin-bottom:1rem
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #ccc;
+            background-color: #ffadad;
             -webkit-transition: .4s;
             transition: .4s;
         }
@@ -498,10 +501,11 @@ margin-bottom:1rem
         {
             position: absolute;
             content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
+            /* knob scaled to 25% of 26px */
+            height: 6.5px;
+            width: 6.5px;
+            left: 1px;
+            bottom: 1px;
             background-color: white;
             -webkit-transition: .4s;
             transition: .4s;
@@ -509,25 +513,28 @@ margin-bottom:1rem
 
         input:checked + .slider 
         {
-            background-color: #2196F3;
+            background-color: #878787;
         }
 
         input:focus + .slider 
         {
-            box-shadow: 0 0 1px #2196F3;
+            box-shadow: 0 0 1px #878787;
         }
 
         input:checked + .slider:before 
         {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
+            /* move knob by the new computed distance (15 - 6.5 - 2) */
+            -webkit-transform: translateX(6.5px);
+            -ms-transform: translateX(6.5px);
+            transform: translateX(6.5px);
         }
 
             /* Rounded sliders */
         .slider.round 
         {
-            border-radius: 34px;
+            /* half of height (8.5px) would be 4.25, but keep a bit larger
+               so it stays pill-shaped */
+            border-radius: 8.5px;
         }
 
         .slider.round:before 
@@ -535,7 +542,33 @@ margin-bottom:1rem
             border-radius: 50%;
         }
 
-        #babies-toggle, #kids-toggle, #tweens-toggle, #teens-toggle, #intergen-toggle {
+        #babies-toggle 
+        {
+            margin-right: 0.5rem;
+        }
+
+        #kids-toggle 
+        {
+            margin-right: 0.5rem;
+        }
+
+        #tweens-toggle 
+        {
+            margin-right: 0.5rem;
+        }
+
+        #teens-toggle 
+        {
+            margin-right: 0.5rem;
+        }
+
+        #adults-toggle 
+        {
+            margin-right: 0.5rem;
+        }
+
+        #intergen-toggle 
+        {
             margin-right: 0.5rem;
         }
 
