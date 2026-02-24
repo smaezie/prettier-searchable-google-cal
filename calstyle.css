@@ -540,6 +540,33 @@ margin-bottom:1rem
             border-radius: 50%;
         }
 
+        /* add a checkmark or other visible cue when a demographic toggle is active */
+        .slider:after {
+            content: '';
+            position: absolute;
+            display: none;
+            font-size: 0.8rem;
+            left: 6px;
+            top: 1px;
+            color: #fff;
+        }
+
+        /* show check symbol when checked */
+        input:checked + .slider:after {
+            display: block;
+            content: '✓';
+        }
+
+        /* if you'd rather reveal the native checkbox itself, comment out the opacity/size rules above */
+        /*
+        .switch input { 
+            opacity: 1;
+            width: auto;
+            height: auto;
+            position: relative;
+        }
+        */
+
         #babies-toggle 
         {
             margin-right: 0.25rem; /* half spacing */
