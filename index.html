@@ -134,9 +134,10 @@
         if (s.includes('let\'s play tuesdays') || s.includes('puzzles, chess, and magic') || s.includes('for tweens') || s.includes('laser tag')) {
           return 'tweens'; // event is for tweens
         }
-        // add additional rules here as needed
-        // e.g. if (s.includes('kids craft')) return 'kids';
-        if (s.includes('storytime') || s.includes('drums & strings') || s.includes('storycraft') || s.includes('tales and tunes') || s.includes('kids') || s.includes('cantos y cuentos') || s.includes('birth to three play') || s.includes('stem saturday') || s.includes('baby stories and senses') || s.includes('makerspace') || s.includes('family fun night')) {
+        if (s.includes('littles\' storytime') || s.includes('littles\' art studio') || s.includes('drums & strings') || s.includes('babies') || s.includes('cantos y cuentos') || s.includes('birth to three play') || s.includes('baby stories and senses')) {
+          return 'babies'; // event is for babies and littles
+        }
+        if (s.includes('storycraft') || s.includes('tales and tunes') || s.includes('bark') || s.includes('kids') || s.includes('stem saturday') || s.includes('makerspace') || s.includes('family fun night') || s.includes('family night')) {
           return 'kids'; // event is for kids
         }
         if (s.includes('snowflake festival') || s.includes('kickoff') || s.includes('endgames') || s.includes('intergenerational')|| s.includes('all ages')) {
