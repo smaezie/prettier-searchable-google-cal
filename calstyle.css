@@ -332,12 +332,21 @@ margin-bottom:1rem
         /** Event item styling -------------------------------------------------------------------------------*/
         .event-item {
             background-color: #e8f4f8;
-            border-left: 4px solid #437a45;
+            border-left: 4px solid #437a45; /* default color */
             padding: 0.5rem;
             margin: 0.5rem 0;
             border-radius: 2px;
             font-size: 0.85rem;
         }
+
+        /* modifiers for categories/age groups */
+        .event-item.teen { border-left-color: var(--t-16up-age); }
+        .event-item.kids { border-left-color: var(--t-6-11-age); }
+        .event-item.tweens { border-left-color: var(--t-12-16-age); }
+        .event-item.adult { border-left-color: var(--t-18up-age); }
+        /* add other category classes as needed */
+
+
 
         .event-summary {
             font-weight: 600;

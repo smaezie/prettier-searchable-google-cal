@@ -124,6 +124,21 @@
       
       console.log(thisMonthsEvents);
 
+      // Helper to decide a CSS category class based on the event title
+      function getCategoryClass(summary) {
+        if (!summary) return '';
+        const s = summary.toLowerCase();
+        if (s.includes('yap and snack') || s.includes('open crafting for teens') || s.includes('puzzles, chess, and magic')) {
+          return 'teen'; // event is for teens
+        }
+        // add additional rules here as needed
+        // e.g. if (s.includes('kids craft')) return 'kids';
+        if (s.includes('storytime') || s.includes('storyCraft') || s.includes('tales and tunes') || s.includes('cantos y cuentos') || s.includes('lego club') || s.includes('family fun night')) {
+          return 'kids'; // event is for kids
+        }
+        return '';
+      }
+
       // Clear previous events from calendar cells
       document.querySelectorAll('.event-item').forEach(el => el.remove());
 
@@ -158,6 +173,13 @@
           // Create event container
           const eventEl = document.createElement('div');
           eventEl.className = 'event-item';
+
+          // apply category-specific class if one is determined
+          const cat = getCategoryClass(event.summary);
+          if (cat) {
+            eventEl.classList.add(cat);
+          }
+
           eventEl.innerHTML = `
             <div class="event-summary"><a href="${event.htmlLink}" target="_blank"><strong>${event.summary}</strong></a></div>
             <div class="event-time">${startTime} - ${endTime}</div>
