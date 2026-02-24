@@ -27,6 +27,12 @@
         --t-16up-age:#c597df;
         --t-18up-age:#a2bce8;
         --t-intergen:#ffffff;
+        --border-b-5-age:#ff863f;
+        --border-6-11-age:#ffc744;
+        --border-12-16-age:#ff6464;
+        --border-16up-age:#af5cdf;
+        --border-18up-age:#739ce3;
+        --border-intergen:#b8cfd3;
         }
 
 /** 
@@ -332,7 +338,7 @@ margin-bottom:1rem
         /** Event item styling -------------------------------------------------------------------------------*/
         .event-item {
             background-color: #e8f4f8;
-            border-left: 4px solid #437a45; /* default color */
+            border-left: 6px solid #437a45; /* default color */
             padding: 0.5rem;
             margin: 0.5rem 0;
             border-radius: 2px;
@@ -340,18 +346,18 @@ margin-bottom:1rem
         }
 
         /* modifiers for categories/age groups */
-        .event-item.teen { border-left-color: var(--t-16up-age); }
-        .event-item.kids { border-left-color: var(--t-6-11-age); }
-        .event-item.tweens { border-left-color: var(--t-12-16-age); }
-        .event-item.adult { border-left-color: var(--t-18up-age); }
-        .event-item.intergen { border-left-color: var(--t-intergen); }
+        .event-item.teen { background-color: var(--t-16up-age); border-left-color: var(--border-16up-age); }
+        .event-item.kids { background-color: var(--t-6-11-age); border-left-color: var(--border-6-11-age); }
+        .event-item.tweens { background-color: var(--t-12-16-age); border-left-color: var(--border-12-16-age); }
+        .event-item.adult { background-color: var(--t-18up-age); border-left-color: var(--border-18up-age); }
+        .event-item.intergen { background-color: var(--t-intergen); border-left-color: var(--border-intergen); }
         /* add other category classes as needed */
 
 
 
         .event-summary {
             font-weight: 600;
-            color: #054b2d;
+            color: #000000;
             line-height: 1.2;
             margin-bottom: 0.3rem;
             word-wrap: break-word;
@@ -369,14 +375,14 @@ margin-bottom:1rem
 
         .event-time {
             font-weight: 500;
-            color: #437a45;
+            color: #2a2a2a;
             line-height: 1.2;
             font-size: 0.8rem;
             margin-bottom: 0.3rem;
         }
 
         .event-description {
-            color: #052e1c;
+            color: #000000;
             line-height: 1.1;
             word-wrap: break-word;
             font-size: 0.7rem;
