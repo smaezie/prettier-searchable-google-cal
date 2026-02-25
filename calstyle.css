@@ -446,7 +446,7 @@ margin-bottom:1rem
             flex:1 1 0;
         }
         .sidecol{
-            width: 15rem;
+            width: 13rem;
             margin-top:3rem;
             flex-shrink:0;
         }
@@ -462,7 +462,7 @@ margin-bottom:1rem
             background-size: 20px 20px; /* Set the size of the search icon */
             /* background-position: 10px 3px; */
             background-position-x: left 3%;
-            padding-left: 3rem; /* Add padding to prevent text from overlapping the search icon */
+            padding-left: 1.5rem; /* Add padding to prevent text from overlapping the search icon */
             background-position-y: center;
             background-repeat: no-repeat; 
             width: 100%;
