@@ -49,18 +49,6 @@
         <form class="form-inline">
           <label class="lead mr-2 ml-2" for="month">Jump To: </label>
           <select class="form-control col-sm-4" name="month" id="month" onchange="jump(); populateGoogleCal()">
-            <option value=0>Jan</option>
-            <option value=1>Feb</option>
-            <option value=2>Mar</option>
-            <option value=3>Apr</option>
-            <option value=4>May</option>
-            <option value=5>Jun</option>
-            <option value=6>Jul</option>
-            <option value=7>Aug</option>
-            <option value=8>Sep</option>
-            <option value=9>Oct</option>
-            <option value=10>Nov</option>
-            <option value=11>Dec</option>
           </select>
 
 
@@ -73,11 +61,6 @@
             <option value=2028>2028</option>
             <option value=2029>2029</option>
             <option value=2030>2030</option>
-            <option value=2031>2031</option>
-            <option value=2032>2032</option>
-            <option value=2033>2033</option>
-            <option value=2034>2034</option>
-            <option value=2035>2035</option>
           </select>
         </form>
       </div>
@@ -86,14 +69,9 @@
         <div class="card">
           <h4 class="card-header">Looking for something specific?</h4>
           <div class="p-3">
-            <input type="text" id="myInput" onkeyup="searchCal()" placeholder="Search for events...">
-            <p><strong>Event Demographics</strong></p>
-            <p><label class="switch" id="babies-toggle"><input type="checkbox"><span class="slider round"></span></label>&emsp;Babies & Littles</p>
-            <p><label class="switch" id="kids-toggle"><input type="checkbox"><span class="slider round"></span></label>&emsp;Kids</p>
-            <p><label class="switch" id="tweens-toggle"><input type="checkbox"><span class="slider round"></span></label>&emsp;Tweens</p>
-            <p><label class="switch" id="teens-toggle"><input type="checkbox"><span class="slider round"></span></label>&emsp;Teens</p>
-            <p><label class="switch" id="intergen-toggle"><input type="checkbox"><span class="slider round"></span></label>&emsp;Intergenerational</p>
-            <p><small></small></p>
+            <input type="text" id="myInput" onkeyup="searchCal()" placeholder="Search for names..">
+            <p>Filter and Searchbar will go <strong>here.</strong></p>
+            <p><small>Notes, search, or upcoming events.</small></p>
           </div>
         </div>
       </aside>
@@ -122,7 +100,7 @@
         AssignCalEvents(res);
       } catch (error) {
         console.error("Error fetching calendar data:", error);
-        document.getElementById("rR").textContent = "Error loading calendar: " + error.message;
+        document.getElementById("rR").textContent = "Sorry, Sarah. You messed up! Error loading calendar: " + error.message;
       }
     }
 
@@ -131,30 +109,8 @@
       // This function would parse the 'res' object and update the calendar UI accordingly
 
       const thisMonthsEvents = res;
-      
-      console.log(thisMonthsEvents);
 
-      // Helper to decide a CSS category class based on the event title
-      function getCategoryClass(summary) {
-        if (!summary) return '';
-        const s = summary.toLowerCase();
-        if (s.includes('yap and snack') || s.includes('open crafting for teens') || s.includes('for teens')) {
-          return 'teen'; // event is for teens
-        }
-        if (s.includes('let\'s play tuesdays') || s.includes('puzzles, chess, and magic') || s.includes('for tweens') || s.includes('laser tag')) {
-          return 'tweens'; // event is for tweens
-        }
-        if (s.includes('littles\' storytime') || s.includes('littles\' art studio') || s.includes('drums & strings') || s.includes('babies') || s.includes('cantos y cuentos') || s.includes('birth to three play') || s.includes('baby stories and senses')) {
-          return 'babies'; // event is for babies and littles
-        }
-        if (s.includes('storycraft') || s.includes('tales and tunes') || s.includes('bark') || s.includes('kids') || s.includes('stem saturday') || s.includes('makerspace') || s.includes('family fun night') || s.includes('family night')) {
-          return 'kids'; // event is for kids
-        }
-        if (s.includes('snowflake festival') || s.includes('kickoff') || s.includes('endgames') || s.includes('intergenerational')|| s.includes('all ages')) {
-          return 'intergen'; // event is for all ages
-        }
-        return '';
-      }
+      console.log(thisMonthsEvents);
 
       // Clear previous events from calendar cells
       document.querySelectorAll('.event-item').forEach(el => el.remove());
@@ -172,16 +128,16 @@
         const dateId = `date-${year}-${month}-${day}`;
 
         // Extract and format times
-        const startTime = startDateTime.toLocaleTimeString('en-US', { 
-          hour: '2-digit', 
+        const startTime = startDateTime.toLocaleTimeString('en-US', {
+          hour: '2-digit',
           minute: '2-digit',
-          hour12: true 
+          hour12: true
         });
         const endDateTime = new Date(event.end.dateTime);
-        const endTime = endDateTime.toLocaleTimeString('en-US', { 
-          hour: '2-digit', 
+        const endTime = endDateTime.toLocaleTimeString('en-US', {
+          hour: '2-digit',
           minute: '2-digit',
-          hour12: true 
+          hour12: true
         });
 
         // Find the matching calendar cell
@@ -190,13 +146,6 @@
           // Create event container
           const eventEl = document.createElement('div');
           eventEl.className = 'event-item';
-
-          // apply category-specific class if one is determined
-          const cat = getCategoryClass(event.summary);
-          if (cat) {
-            eventEl.classList.add(cat);
-          }
-
           eventEl.innerHTML = `
             <div class="event-summary"><a href="${event.htmlLink}" target="_blank"><strong>${event.summary}</strong></a></div>
             <div class="event-time">${startTime} - ${endTime}</div>
@@ -206,56 +155,35 @@
           cell.appendChild(eventEl);
         }
       });
-
-      // after inserting all events, apply filters in case toggles/search are active
-      if (typeof searchCal === 'function') {
-        searchCal();
-      }
     }
 
     // Wait for DOM to be fully loaded before calling
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
       populateGoogleCal();
-
-      // setup toggle listeners so any change will re-run filtering
-      ['babies','kids','tweens','teens','intergen'].forEach(cat => {
-        const checkbox = document.querySelector(`#${cat}-toggle input`);
-        if (checkbox) {
-          checkbox.addEventListener('change', searchCal);
-        }
-      });
     });
-
-    // filter events based on search box and demographic toggles
-    function searchCal() {
-      const query = document.getElementById('myInput').value.toLowerCase();
-      const hideDol = {
-        babies: document.querySelector('#babies-toggle input').checked,
-        kids: document.querySelector('#kids-toggle input').checked,
-        tweens: document.querySelector('#tweens-toggle input').checked,
-        teens: document.querySelector('#teens-toggle input').checked,
-        intergen: document.querySelector('#intergen-toggle input').checked
-      };
-
-      document.querySelectorAll('.event-item').forEach(el => {
-        let visible = true;
-        // text search
-        if (query && !el.textContent.toLowerCase().includes(query)) {
-          visible = false;
-        }
-        // category toggles (hide when checked)
-        if (visible) {
-          if (hideDol.babies && el.classList.contains('babies')) visible = false;
-          if (hideDol.kids && el.classList.contains('kids')) visible = false;
-          if (hideDol.tweens && el.classList.contains('tweens')) visible = false;
-          if (hideDol.teens && el.classList.contains('teen')) visible = false;
-          if (hideDol.intergen && el.classList.contains('intergen')) visible = false;
-        }
-        el.style.display = visible ? '' : 'none';
-      });
-    }
   </script>
+
+  </p>
   <div id="rR"></div>
   <script src="calendarview.js"></script>
+  <script>
+    /* This script is placed at the end of the body tag to ensure that it doesn't run until
+  the page has fully loaded and all elements of the DOM are accessible */
+
+    const monthSelect = getElementById('month');
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+    // This loop will run through the above months array, adding an option for each
+    // month.Each option will have their value assigned based on the month's index
+    // in the array (starting at 0)
+
+    momths.forEach((month, index) => {
+      const option = document.createElement('option');
+      option.value = index;
+      option.textContent = month;
+      monthSelect.appendChild(option);
+    })
+  </script>
 </body>
+
 </html>
