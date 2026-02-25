@@ -199,6 +199,23 @@
 
     // Wait for DOM to be fully loaded before calling
     document.addEventListener("DOMContentLoaded", function () {
+      // populate month dropdown and set default values
+      const monthSelect = document.getElementById('month');
+      const yearSelect = document.getElementById('year');
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+      months.forEach((month, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        option.textContent = month;
+        monthSelect.appendChild(option);
+      });
+
+      // default to current month/year
+      const today = new Date();
+      monthSelect.value = today.getMonth();
+      yearSelect.value = today.getFullYear();
+
       populateGoogleCal();
 
       // setup toggle listeners so any change will re-run filtering
@@ -243,24 +260,7 @@
   </p>
   <div id="rR"></div>
   <script src="calendarview.js"></script>
-  <script>
-    /* This script is placed at the end of the body tag to ensure that it doesn't run until
-  the page has fully loaded and all elements of the DOM are accessible */
-
-    const monthSelect = document.getElementById('month');
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-    // This loop will run through the above months array, adding an option for each
-    // month.Each option will have their value assigned based on the month's index
-    // in the array (starting at 0)
-
-    months.forEach((month, index) => {
-      const option = document.createElement('option');
-      option.value = index;
-      option.textContent = month;
-      monthSelect.appendChild(option);
-    })
-  </script>
+  <!-- month/year dropdown population moved into DOMContentLoaded handler above -->
 </body>
 
 </html>
