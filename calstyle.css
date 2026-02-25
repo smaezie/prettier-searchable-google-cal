@@ -446,7 +446,7 @@ margin-bottom:1rem
             flex:1 1 0;
         }
         .sidecol{
-            width: 250px;
+            width: 25rem;
             margin-top:3rem;
             flex-shrink:0;
         }
@@ -464,7 +464,7 @@ margin-bottom:1rem
             background-position-x: left;
             background-position-y: center;
             background-repeat: no-repeat; /* Do not repeat the icon image */
-            padding-left: 35px; /* Add padding to the left to make space for the search icon */
+            padding-left: 5rem; /* Add padding to the left to make space for the search icon */
             width: 100%;
             margin-top: 0.3rem;
             border-radius: 25px;
