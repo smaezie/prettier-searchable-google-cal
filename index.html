@@ -71,7 +71,19 @@
           <div class="p-3">
             <input type="text" id="myInput" onkeyup="searchCal()" placeholder="Search for names..">
             <p>Filter and Searchbar will go <strong>here.</strong></p>
-            <p><small>Notes, search, or upcoming events.</small></p>
+            <input type="text" id="myInput" onkeyup="searchCal()" placeholder="Search for events...">
+            <p><strong>Event Demographics</strong></p>
+            <p><label class="switch" id="babies-toggle"><input type="checkbox"><span
+                  class="slider round"></span></label>&emsp;Babies & Littles</p>
+            <p><label class="switch" id="kids-toggle"><input type="checkbox"><span
+                  class="slider round"></span></label>&emsp;Kids</p>
+            <p><label class="switch" id="tweens-toggle"><input type="checkbox"><span
+                  class="slider round"></span></label>&emsp;Tweens</p>
+            <p><label class="switch" id="teens-toggle"><input type="checkbox"><span
+                  class="slider round"></span></label>&emsp;Teens</p>
+            <p><label class="switch" id="intergen-toggle"><input type="checkbox"><span
+                  class="slider round"></span></label>&emsp;Intergenerational</p>
+            <p><small></small></p>
           </div>
         </div>
       </aside>
@@ -126,7 +138,7 @@
         if (s.includes('storycraft') || s.includes('tales and tunes') || s.includes('bark') || s.includes('kids') || s.includes('stem saturday') || s.includes('makerspace') || s.includes('family fun night') || s.includes('family night')) {
           return 'kids'; // event is for kids
         }
-        if (s.includes('snowflake festival') || s.includes('kickoff') || s.includes('endgames') || s.includes('intergenerational')|| s.includes('all ages')) {
+        if (s.includes('snowflake festival') || s.includes('kickoff') || s.includes('endgames') || s.includes('intergenerational') || s.includes('all ages')) {
           return 'intergen'; // event is for all ages
         }
         return '';
@@ -166,6 +178,11 @@
           // Create event container
           const eventEl = document.createElement('div');
           eventEl.className = 'event-item';
+          // apply category-specific class if one is determined
+          const cat = getCategoryClass(event.summary);
+          if (cat) {
+            eventEl.classList.add(cat);
+          }
           eventEl.innerHTML = `
             <div class="event-summary"><a href="${event.htmlLink}" target="_blank"><strong>${event.summary}</strong></a></div>
             <div class="event-time">${startTime} - ${endTime}</div>
@@ -177,10 +194,52 @@
       });
     }
 
+    // after inserting all events, apply filters in case toggles/search are active
+    if (typeof searchCal === 'function') {
+      searchCal();
+    }
+
     // Wait for DOM to be fully loaded before calling
     document.addEventListener("DOMContentLoaded", function () {
       populateGoogleCal();
+
+      // setup toggle listeners so any change will re-run filtering
+      ['babies', 'kids', 'tweens', 'teens', 'intergen'].forEach(cat => {
+        const checkbox = document.querySelector(`#${cat}-toggle input`);
+        if (checkbox) {
+          checkbox.addEventListener('change', searchCal);
+        }
+      });
     });
+
+    // filter events based on search box and demographic toggles
+    function searchCal() {
+      const query = document.getElementById('myInput').value.toLowerCase();
+      const hideDol = {
+        babies: document.querySelector('#babies-toggle input').checked,
+        kids: document.querySelector('#kids-toggle input').checked,
+        tweens: document.querySelector('#tweens-toggle input').checked,
+        teens: document.querySelector('#teens-toggle input').checked,
+        intergen: document.querySelector('#intergen-toggle input').checked
+      };
+
+      document.querySelectorAll('.event-item').forEach(el => {
+        let visible = true;
+        // text search
+        if (query && !el.textContent.toLowerCase().includes(query)) {
+          visible = false;
+        }
+        // category toggles (hide when checked)
+        if (visible) {
+          if (hideDol.babies && el.classList.contains('babies')) visible = false;
+          if (hideDol.kids && el.classList.contains('kids')) visible = false;
+          if (hideDol.tweens && el.classList.contains('tweens')) visible = false;
+          if (hideDol.teens && el.classList.contains('teen')) visible = false;
+          if (hideDol.intergen && el.classList.contains('intergen')) visible = false;
+        }
+        el.style.display = visible ? '' : 'none';
+      });
+    }
   </script>
 
   </p>
